@@ -1,1 +1,205 @@
 
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>SINAR TERBIT - App Studio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --orange-vibrant: #FF6B00;
+      --yellow-sun: #FFD600;
+      --text-dark: #1A1A1A;
+      --text-gray: #4A4A4A;
+      --glass-light: rgba(255, 255, 255, 0.7);
+      --glass-border: rgba(255, 255, 255, 0.4);
+    }
+    
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body { 
+      font-family: 'Plus Jakarta Sans', sans-serif; 
+      color: var(--text-dark); 
+      line-height: 1.6; 
+      overflow-x: hidden;
+      background: linear-gradient(135deg, #FFF3E0 0%, #FFD180 50%, #FF9E80 100%);
+      background-attachment: fixed;
+    }
+    
+    /* Dekorasi Matahari Terbit di Background */
+    body::before {
+      content: '';
+      position: fixed;
+      top: -20%; left: -10%;
+      width: 70vw; height: 70vw;
+      background: radial-gradient(circle, rgba(255,214,0,0.4) 0%, rgba(255,107,0,0) 70%);
+      border-radius: 50%;
+      z-index: -1;
+      animation: pulseSun 8s infinite alternate;
+    }
+
+    @keyframes pulseSun {
+      0% { transform: scale(1); opacity: 0.8; }
+      100% { transform: scale(1.1); opacity: 1; }
+    }
+
+    .marquee-container {
+      background: var(--text-dark);
+      padding: 12px 0; overflow: hidden; white-space: nowrap; display: flex;
+    }
+    .marquee-text {
+      font-weight: 800; font-size: 0.9rem; color: var(--yellow-sun); 
+      text-transform: uppercase; letter-spacing: 4px;
+      animation: marquee 20s linear infinite; 
+    }
+    @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+    
+    nav { 
+      display: flex; justify-content: space-between; align-items: center; 
+      padding: 20px 8%; 
+      background: rgba(255, 255, 255, 0.3); backdrop-filter: blur(15px);
+      border-bottom: 1px solid var(--glass-border);
+      position: sticky; top: 0; z-index: 100; 
+    }
+    .logo { 
+      font-size: 1.8rem; font-weight: 800; color: var(--text-dark); text-decoration: none; 
+      letter-spacing: -1px; display: flex; align-items: center;
+    }
+    .logo span { color: var(--orange-vibrant); margin-left: 5px; }
+    
+    .nav-links a { 
+      color: var(--text-dark); margin-left: 30px; text-decoration: none; 
+      font-weight: 600; font-size: 1rem; transition: all 0.3s;
+    }
+    .nav-links a:hover { color: var(--orange-vibrant); }
+
+    .hero { 
+      padding: 120px 5% 100px; text-align: center; 
+      display: flex; flex-direction: column; justify-content: center; align-items: center;
+    }
+    
+    .hero-badge {
+      background: #fff;
+      padding: 8px 20px; border-radius: 50px; font-size: 0.9rem; font-weight: 800; 
+      color: var(--orange-vibrant); margin-bottom: 25px; text-transform: uppercase; 
+      letter-spacing: 2px; box-shadow: 0 10px 20px rgba(255, 107, 0, 0.15);
+    }
+    
+    .hero h1 { 
+      font-size: 5rem; font-weight: 800; margin-bottom: 25px; line-height: 1.1; 
+      letter-spacing: -2px; color: var(--text-dark);
+    }
+    .hero h1 .highlight {
+      background: linear-gradient(90deg, var(--orange-vibrant), #FF1493);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    
+    .hero p { 
+      font-size: 1.25rem; color: var(--text-gray); margin-bottom: 45px; 
+      max-width: 600px; font-weight: 400; line-height: 1.7;
+    }
+    
+    .btn-primary { 
+      display: inline-block; background: var(--text-dark); 
+      color: #fff; padding: 18px 45px; border-radius: 50px; 
+      font-weight: 800; font-size: 1.1rem; text-decoration: none; 
+      text-transform: uppercase; letter-spacing: 1px;
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s ease; border: 2px solid transparent;
+    }
+    .btn-primary:hover { 
+      transform: translateY(-5px); 
+      background: var(--orange-vibrant);
+      box-shadow: 0 20px 40px rgba(255, 107, 0, 0.4); 
+    }
+
+    .section { padding: 80px 5%; max-width: 1200px; margin: 0 auto; text-align: center; }
+    
+    .services-grid { display: flex; flex-wrap: wrap; gap: 30px; justify-content: center; margin-top: 50px;}
+    
+    .card { 
+      background: var(--glass-light); backdrop-filter: blur(20px);
+      padding: 40px 30px; border-radius: 24px; 
+      width: 100%; max-width: 280px; text-align: left; 
+      border: 1px solid var(--glass-border); 
+      transition: all 0.4s ease;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    }
+    .card:hover { 
+      transform: translateY(-10px); 
+      background: #fff;
+      border-color: var(--orange-vibrant);
+      box-shadow: 0 20px 40px rgba(255, 107, 0, 0.15);
+    }
+    
+    .card-icon { font-size: 2.5rem; margin-bottom: 20px; }
+    .card h3 { color: var(--text-dark); margin-bottom: 12px; font-size: 1.4rem; font-weight: 800; }
+    .card p { color: var(--text-gray); font-size: 1rem; }
+
+    footer { 
+      background: rgba(255, 255, 255, 0.5); backdrop-filter: blur(10px);
+      text-align: center; padding: 40px 5%; margin-top: 50px; color: var(--text-gray);
+      border-top: 1px solid var(--glass-border); font-weight: 600;
+    }
+    footer a { color: var(--orange-vibrant); text-decoration: none; transition: color 0.3s; }
+    footer a:hover { color: var(--text-dark); }
+
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 3rem; }
+      .nav-links { display: none; }
+      .card { max-width: 100%; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="marquee-container">
+  <div class="marquee-text">
+    ✦ ENERGI BARU ✦ PERFORMA APLIKASI OPTIMAL ✦ KREATIVITAS TANPA BATAS ✦ SINAR TERBIT STUDIO ✦ TINGKATKAN POTENSI ANDA ✦
+  </div>
+</div>
+
+<nav>
+  <a href="/" class="logo">SINAR<span>TERBIT</span></a>
+  <div class="nav-links">
+    <a href="/privacy-policy.html">Kebijakan Privasi</a>
+    <a href="mailto:support@gayengstudio.my.id">Kontak</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-badge">Energi & Inovasi Baru</div>
+  <h1>Era Baru.<br><span class="highlight">Aplikasi Hebat.</span></h1>
+  <p>Kami menyinari setiap baris kode dengan kreativitas. Menghasilkan pengalaman aplikasi Android yang cepat, responsif, dan siap mendominasi pasar.</p>
+  <a class="btn-primary" href="mailto:support@gayengstudio.my.id">Mulai Perjalanan</a>
+</section>
+
+<section class="section">
+  <div class="services-grid">
+    <div class="card">
+      <div class="card-icon">🔥</div>
+      <h3>Performa Cepat</h3>
+      <p>Arsitektur aplikasi yang dibangun untuk kecepatan dan efisiensi memori tingkat tinggi.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🎨</div>
+      <h3>Desain UI/UX</h3>
+      <p>Tampilan antarmuka yang memanjakan mata dan memberikan pengalaman interaktif.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">📈</div>
+      <h3>Siap Publikasi</h3>
+      <p>Struktur yang sepenuhnya mematuhi standar keamanan dan regulasi kebijakan ekosistem digital.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 Sinar Terbit Studio. All Rights Reserved.</p>
+  <br>
+  <p><a href="/privacy-policy.html">Kebijakan Privasi</a> &nbsp;|&nbsp; <a href="/app-ads.txt">App-Ads</a></p>
+</footer>
+
+</body>
+</html>
